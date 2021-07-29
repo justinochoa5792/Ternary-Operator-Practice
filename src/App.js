@@ -5,28 +5,19 @@ import "./App.css";
 
 function App() {
   const [show, setShow] = useState(false);
-  const [test1, setTest1] = useState(false);
-  const [test2, setTest2] = useState(false);
-  const [test3, setTest3] = useState(false);
-  const [isClicked, setIsClicked] = useState(false);
+  const [isClicked, setIsClicked] = useState("button1", "button2", "button3");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const handleTest1 = () => {
-    setTest1(true);
-    setTest2(false);
-    setTest3(false);
+    setIsClicked("button1");
   };
   const handleTest2 = () => {
-    setTest1(false);
-    setTest2(true);
-    setTest3(false);
+    setIsClicked("button2");
   };
   const handleTest3 = () => {
-    setTest1(false);
-    setTest2(false);
-    setTest3(true);
+    setIsClicked("button3");
   };
   return (
     <div className="App">
@@ -39,23 +30,23 @@ function App() {
         <Modal.Header closeButton>
           <Modal.Title className="Modal">
             <Button onClick={handleTest1}>
-              <FaBeer />
+              <FaBeer className={isClicked === "button1" ? "active" : ""} />
               Test 1
             </Button>
             <Button onClick={handleTest2}>
-              <FaBeer />
+              <FaBeer className={isClicked === "button2" ? "active" : ""} />
               Test 2
             </Button>
             <Button onClick={handleTest3}>
-              <FaBeer />
+              <FaBeer className={isClicked === "button3" ? "active" : ""} />
               Test 3
             </Button>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-        {test1 ? (
+        {isClicked === "button1" ? (
           <p>Did this work?</p>
-        ) : test2 ? (
+        ) : isClicked === "button2" ? (
           <p>How about this?</p>
         ) : (
           <p>And this?</p>
